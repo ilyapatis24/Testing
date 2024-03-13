@@ -6,12 +6,31 @@
 TEST_CASE("Empty", "[Check empty list]") {
     List test_list;
     SECTION("Тестирование методов двусвязного списка") {
-        CHECK(test_list.Size() == 0);
-        test_list.PushBack(20);
-        CHECK(test_list.Size() == 1);
+        try
+        {
+            test_list.PopBack();
+        }
+        catch (std::runtime_error err)
+        {
+            CHECK(test_list.Empty() == true);
+        }
+
+        try
+        {
+            test_list.PopFront();
+        }
+        catch (std::runtime_error err)
+        {
+            CHECK(test_list.Empty() == true);
+        }
+
+        test_list.PushBack(11);
         test_list.PushBack(21);
         CHECK(test_list.Size() == 2);
-        test_list.PopBack();
+        CHECK(test_list.PopFront() == 11);
+        CHECK(test_list.PopBack() == 21);
+        CHECK(test_list.Empty() == true);
+        test_list.PushFront(14);
         CHECK(test_list.Size() == 1);
     }
 
