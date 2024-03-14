@@ -1,0 +1,5 @@
+﻿cmake_minimum_required(VERSION 3.10)
+project(Testing_02)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Catch2 Catch2-build)
+add_executable(TestList test-main.cpp main.cpp)
+target_link_libraries(TestList PRIVATE Catch2::Catch2)
